@@ -1,5 +1,3 @@
-const { application } = require("express");
-
 const socket = io("/");
 
 var peer = new Peer(undefined, {
@@ -109,26 +107,26 @@ $(function () {
         }
     })
 
-    $("#invte_button").click(function () {
+    $("#invite_button").click(function () {
         const to = prompt("Enter the email address")
         let data = {
             url: window.location.href,
             to: to
         }
-        console.log("url , to :", data.url, data.to)
-        $ajax({
+        $.ajax({
             url: "/send-mail",
             type: "post",
-            data: json.stringify(data),
-            dataType: "json",
-            contentType: "application/json",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: 'application/json',
             success: function (result) {
-                alert("Invite Sent!")
+                alert("Invite sent!")
             },
             error: function (result) {
                 console.log(result.responseJSON)
             }
         })
+    })
 
 })
 
